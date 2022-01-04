@@ -5,7 +5,7 @@ from pathlib import Path
 
 def load_data(path):
     with open(path) as fp:
-        return [int(line) for line in fp.read().splitlines()]
+        return [int(line) for line in fp]
 
 
 def count_increasing_depth_num(measurements, sliding_window_size=1):

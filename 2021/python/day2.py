@@ -1,4 +1,4 @@
-# https://adventofcode.com/2021/day/2 
+# https://adventofcode.com/2021/day/2
 
 from pathlib import Path
 
@@ -6,7 +6,7 @@ from pathlib import Path
 def load_data(path):
     data = []
     with open(path) as fd:
-        for line in fd.read().splitlines():
+        for line in fd:
             direction, value = line.split()
             data.append((direction, int(value)))
     return data

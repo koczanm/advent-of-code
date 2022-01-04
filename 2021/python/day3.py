@@ -5,7 +5,7 @@ from pathlib import Path
 
 def load_data(path):
     with open(path) as fd:
-        return fd.read().splitlines()
+        return fd.readlines()
 
 
 def bin_to_int(binary):
