@@ -12,7 +12,7 @@ def load_data(path):
         return template, rules
 
 
-def polymerize(template, rules, steps_num):
+def polymerize(template, rules, steps_num=10):
     @cache
     def count(pair, step):
         if step == steps_num or pair not in rules:
@@ -36,11 +36,11 @@ def get_diff(counter):
 
 
 def part_one(data):
-    return get_diff(polymerize(*data, 10))
+    return get_diff(polymerize(*data))
 
 
 def part_two(data):
-    return get_diff(polymerize(*data, 40))
+    return get_diff(polymerize(*data, steps_num=40))
 
 
 if __name__ == "__main__":
