@@ -7,6 +7,8 @@ import re
 from pathlib import Path
 from typing import Dict, List, NamedTuple, Optional, Union
 
+TOTAL_DISK_SPACE: int = 70000000
+
 
 class File(NamedTuple):
     name: str
@@ -39,11 +41,11 @@ class Dir:
     def get_total_size(self) -> int:
         return sum(d.get_total_size() for d in self.subdirs.values()) + sum(f.size for f in self.files)
 
-    def find_dirs(self, maxsize: int = 100000) -> List[Dir]:
+    def find_dirs(self, minsize: int = 0, maxsize: int = TOTAL_DISK_SPACE) -> List[Dir]:
         dirs = []
         for d in self.subdirs.values():
-            dirs.extend(d.find_dirs(maxsize))
-        if self.get_total_size() <= maxsize:
+            dirs.extend(d.find_dirs(minsize, maxsize))
+        if minsize <= self.get_total_size() <= maxsize:
             dirs.append(self)
         return dirs
 
@@ -64,7 +66,15 @@ def load_data(path: Union[str, bytes, os.PathLike]) -> Dir:
 
 
 def part_one(data: Dir) -> int:
-    return sum(d.get_total_size() for d in data.find_dirs())
+    return sum(d.get_total_size() for d in data.find_dirs(maxsize=100000))
+
+
+def part_two(data: Dir) -> int:
+    total_used_space = data.get_total_size()
+    total_unused_space = TOTAL_DISK_SPACE - total_used_space
+    dirs = data.find_dirs(minsize=30000000 - total_unused_space)
+    min_dir = min(dirs, key=lambda d: d.get_total_size())
+    return min_dir.get_total_size()
 
 
 if __name__ == "__main__":
@@ -73,5 +83,7 @@ if __name__ == "__main__":
     data = load_data(input_dir / "data.in")
 
     assert part_one(samples) == 95437
+    assert part_two(samples) == 24933642
 
     print(part_one(data))
+    print(part_two(data))
