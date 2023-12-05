@@ -18,7 +18,11 @@ def load_data(path: Path) -> tuple[list[int], list[list[int]]]:
 
 def pad(image: list[list[int]], value: int) -> list[list[int]]:
     padded_image = [[value, *row, value] for row in image]
-    padded_image = [[value] * len(padded_image[0]), *padded_image, [value] * len(padded_image[0])]
+    padded_image = [
+        [value] * len(padded_image[0]),
+        *padded_image,
+        [value] * len(padded_image[0]),
+    ]
     return padded_image
 
 
@@ -39,7 +43,7 @@ def enhance_image(image: list[list[int]], algorithm: list[int], repeat: int = 1)
                         pixel = padded_image[pixel_y][pixel_x]
                     else:
                         pixel = padding_value
-                    index += pixel * 2 ** bit_position
+                    index += pixel * 2**bit_position
                 enhanced_image[y][x] = algorithm[index]
         if padding_value == 0:
             padding_value = algorithm[0]

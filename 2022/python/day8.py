@@ -103,7 +103,12 @@ class TreeMap:
             def is_visible(self) -> bool:
                 return any(
                     obstacle.height == self.tree_map.OUTSIDE_HEIGHT
-                    for obstacle in (self.upper_obstacle, self.right_obstacle, self.lower_obstacle, self.left_obstacle)
+                    for obstacle in (
+                        self.upper_obstacle,
+                        self.right_obstacle,
+                        self.lower_obstacle,
+                        self.left_obstacle,
+                    )
                 )
 
             def get_scenic_score(self) -> int:

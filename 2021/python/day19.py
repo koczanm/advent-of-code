@@ -26,7 +26,11 @@ class Vector3:
         return Vector3(self.x - other.x, self.y - other.y, self.z - other.z)
 
     def __eq__(self, other: Vector3) -> bool:
-        return isinstance(other, Vector3) and (self.x, self.y, self.z) == (other.x, other.y, other.z)
+        return isinstance(other, Vector3) and (self.x, self.y, self.z) == (
+            other.x,
+            other.y,
+            other.z,
+        )
 
     def __hash__(self) -> int:
         return hash((self.x, self.y, self.z))
@@ -58,7 +62,7 @@ class Scanner:
 
     def generate_all_rotations(self) -> None:
         """Generate all 24 beacon orientations.
-        
+
         Beacons are sequentially rotated around the following axes:
             0) None     1) X       2) X        3) X
             4) XY       5) X       6) X        7) X

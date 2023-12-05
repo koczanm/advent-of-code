@@ -23,7 +23,7 @@ def part_two(data):
     for pos in data:
         diffs = [abs(target - pos) for target in targets]
         sums = [diff * (diff + 1) // 2 for diff in diffs]
-        results = list(map(add, results, sums)) 
+        results = list(map(add, results, sums))
     return min(results)
 
 
@@ -37,4 +37,3 @@ if __name__ == "__main__":
 
     print(part_one(data))
     print(part_two(data))
-

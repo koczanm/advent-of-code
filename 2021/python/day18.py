@@ -26,7 +26,7 @@ class SnailfishNumber:
 
     def __repr__(self):
         if self.value is None:
-            return f'[{repr(self.left)}, {repr(self.right)}]'
+            return f"[{repr(self.left)}, {repr(self.right)}]"
         return repr(self.value)
 
     def __find_explosion_candidate(self, depth=0):
@@ -90,13 +90,13 @@ class SnailfishNumber:
         current = root
         for char in input_str:
             match char:
-                case '[':
+                case "[":
                     current.left = SnailfishNumber(parent=current)
                     current.right = SnailfishNumber(parent=current)
                     current = current.left
-                case ']':
+                case "]":
                     current = current.parent
-                case ',':
+                case ",":
                     current = current.parent.right
                 case _:
                     current.value = int(char)

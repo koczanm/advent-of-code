@@ -4,18 +4,7 @@ from collections import defaultdict
 from pathlib import Path
 
 
-DIGIT_TO_LENGTH = {
-    0: 6,
-    1: 2,
-    2: 5,
-    3: 5,
-    4: 4,
-    5: 5,
-    6: 6,
-    7: 3,
-    8: 7,
-    9: 6
-}
+DIGIT_TO_LENGTH = {0: 6, 1: 2, 2: 5, 3: 5, 4: 4, 5: 5, 6: 6, 7: 3, 8: 7, 9: 6}
 
 
 def load_data(path):
@@ -45,7 +34,10 @@ def determine_mapping(patterns):
     digits[8] = candidates[DIGIT_TO_LENGTH[8]][0]
     digits[3] = get_first_match(lambda c: digits[1].issubset(c), candidates[DIGIT_TO_LENGTH[3]])
     digits[9] = get_first_match(lambda c: digits[4].issubset(c), candidates[DIGIT_TO_LENGTH[9]])
-    digits[0] = get_first_match(lambda c: c != digits[9] and digits[1].issubset(c), candidates[DIGIT_TO_LENGTH[0]])
+    digits[0] = get_first_match(
+        lambda c: c != digits[9] and digits[1].issubset(c),
+        candidates[DIGIT_TO_LENGTH[0]],
+    )
     digits[6] = get_first_match(lambda c: c not in [digits[0], digits[9]], candidates[DIGIT_TO_LENGTH[6]])
     digits[5] = get_first_match(lambda c: c.issubset(digits[6]), candidates[DIGIT_TO_LENGTH[5]])
     digits[2] = get_first_match(lambda c: c not in [digits[3], digits[5]], candidates[DIGIT_TO_LENGTH[2]])
@@ -83,4 +75,3 @@ if __name__ == "__main__":
 
     print(part_one(data))
     print(part_two(data))
-

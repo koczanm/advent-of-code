@@ -32,7 +32,13 @@ class CoordRange:
 
 
 class Cuboid:
-    def __init__(self, x_range: CoordRange, y_range: CoordRange, z_range: CoordRange, is_on: bool = False) -> None:
+    def __init__(
+        self,
+        x_range: CoordRange,
+        y_range: CoordRange,
+        z_range: CoordRange,
+        is_on: bool = False,
+    ) -> None:
         self.x_range = x_range
         self.y_range = y_range
         self.z_range = z_range

@@ -34,7 +34,10 @@ def load_data(path: Union[str, bytes, os.PathLike]) -> Tuple[Dict[int, Stack], L
 def rearrange(stacks: Dict[int, Stack], procedures: List[Procedure], reverse: bool = True) -> Dict[int, Stack]:
     stacks = copy.deepcopy(stacks)
     for proc in procedures:
-        left_crates, moved_crates = stacks[proc.src][: -proc.quantity], stacks[proc.src][-proc.quantity :]
+        left_crates, moved_crates = (
+            stacks[proc.src][: -proc.quantity],
+            stacks[proc.src][-proc.quantity :],
+        )
         stacks[proc.src] = left_crates
         stacks[proc.dest].extend(reversed(moved_crates) if reverse else moved_crates)
     return stacks

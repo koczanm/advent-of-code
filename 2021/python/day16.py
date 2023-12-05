@@ -82,7 +82,10 @@ def decode(transmission, index):
             subpackets, index = get_subpackets_by_length(transmission, index)
         else:
             subpackets, index = get_subpackets_by_number(transmission, index)
-        return Packet(version, type_id, calculate_value(type_id, subpackets), subpackets), index
+        return (
+            Packet(version, type_id, calculate_value(type_id, subpackets), subpackets),
+            index,
+        )
 
 
 def sum_versions(packet):

@@ -50,7 +50,10 @@ def move(position: int, moves: int) -> int:
 
 
 def play_simply(
-    player1_position: int, player2_position: int, dice: DeterministicDice, threshold: int = 1000
+    player1_position: int,
+    player2_position: int,
+    dice: DeterministicDice,
+    threshold: int = 1000,
 ) -> tuple[list[int], int]:
     positions = [player1_position, player2_position]
     scores = [0, 0]
@@ -86,7 +89,11 @@ def play_dirac(
             player1_wins += 1
         else:
             player2_new_wins, player1_new_wins = play_dirac(
-                player2_position, player1_new_position, dice, player2_score, player1_new_score
+                player2_position,
+                player1_new_position,
+                dice,
+                player2_score,
+                player1_new_score,
             )
             player1_wins += player1_new_wins
             player2_wins += player2_new_wins
