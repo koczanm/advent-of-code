@@ -1,5 +1,3 @@
-import Algorithms
-
 struct MulInstruction {
     let multiplicand: Int
     let multiplier: Int

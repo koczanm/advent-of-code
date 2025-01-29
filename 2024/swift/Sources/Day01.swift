@@ -1,5 +1,3 @@
-import Algorithms
-
 struct LocationList {
     var left: [Int]
     var right: [Int]

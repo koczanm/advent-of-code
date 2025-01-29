@@ -1,5 +1,3 @@
-import Algorithms
-
 enum Trend: Int {
     case decreasing = -1
     case increasing = 1
